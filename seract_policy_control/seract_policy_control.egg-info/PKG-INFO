@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: seract_policy_control
+Version: 0.0.1
+Summary: Direct LeRobot controller publishing JointTrajectory
+Maintainer: You
+Maintainer-email: you@example.com
+License: MIT
+Requires-Dist: setuptools
+Dynamic: license
+Dynamic: maintainer
+Dynamic: maintainer-email
+Dynamic: requires-dist
+Dynamic: summary

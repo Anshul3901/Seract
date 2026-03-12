@@ -1,0 +1,42 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    so_100_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    so_100_arm_gripper_controller:
+      type: position_controllers/JointGroupPositionController
+
+
+# --- Per-controller parameters ---
+
+joint_state_broadcaster:
+  ros__parameters:
+    publish_rate: 50.0
+
+so_100_arm_controller:
+  ros__parameters:
+    joints:
+      - Shoulder_Rotation
+      - Shoulder_Pitch
+      - Elbow
+      - Wrist_Pitch
+      - Wrist_Roll
+    command_interfaces: [position]
+    state_interfaces: [position]          # ✅ removed velocity
+    state_publish_rate: 50.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+    open_loop_control: false
+    allow_nonzero_velocity_at_trajectory_end: false
+
+so_100_arm_gripper_controller:
+  ros__parameters:
+    joints: 
+      - Gripper
+    command_interfaces: [position]
+    state_interfaces: [position]          # ✅ removed velocity

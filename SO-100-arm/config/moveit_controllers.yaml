@@ -1,0 +1,26 @@
+move_group:
+  ros__parameters:
+    moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControllerManager
+
+    moveit_simple_controller_manager:
+      controller_names:
+        - so_100_arm_controller
+        - so_100_gripper_controller
+
+      so_100_arm_controller:
+        type: FollowJointTrajectory
+        action_ns: follow_joint_trajectory      # ❗ single token only
+        default: true
+        joints:
+          - Shoulder_Rotation
+          - Shoulder_Pitch
+          - Elbow
+          - Wrist_Pitch
+          - Wrist_Roll
+
+      so_100_gripper_controller:
+        type: GripperCommand
+        action_ns: gripper_cmd
+        default: false
+        joints:
+          - Gripper

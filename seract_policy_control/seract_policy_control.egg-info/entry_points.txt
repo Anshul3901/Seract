@@ -1,0 +1,4 @@
+[console_scripts]
+joint_jogger = seract_policy_control.joint_jogger:main
+lerobot_policy_controller = seract_policy_control.lerobot_policy_controller:main
+policy_bridge = seract_policy_control.policy_bridge:main

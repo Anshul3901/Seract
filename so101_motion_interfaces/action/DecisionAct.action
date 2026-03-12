@@ -1,0 +1,12 @@
+# Goal
+# If true: block until decision.json contains accept/reject
+bool wait_for_decision
+---
+# Result
+bool success
+string decision
+string message
+---
+# Feedback
+string state
+float32 progress

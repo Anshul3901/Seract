@@ -1,0 +1,14 @@
+#!/bin/bash
+# Wrapper script that ensures ROS2 Python 3.10 is used
+# Source ROS2 setup to get correct Python and PYTHONPATH
+source /opt/ros/humble/setup.bash
+
+# Ensure ROS2 packages are prioritized in PYTHONPATH
+export PYTHONPATH="/opt/ros/humble/lib/python3.10/site-packages:$PYTHONPATH"
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Use python3.10 explicitly to match ROS2 Humble
+exec python3.10 "$SCRIPT_DIR/reset_to_mid.py" "$@"
+

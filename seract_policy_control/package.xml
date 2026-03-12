@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>seract_policy_control</name>
+  <version>0.0.1</version>
+  <description>Direct LeRobot ACT controller for SO101 via JointTrajectoryController</description>
+  <maintainer email="you@example.com">You</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>ament_python</buildtool_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>trajectory_msgs</exec_depend>
+  <exec_depend>cv_bridge</exec_depend>
+  <exec_depend>vision_opencv</exec_depend>
+  <exec_depend>python3-opencv</exec_depend>
+  <exec_depend>ros2topic</exec_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
+

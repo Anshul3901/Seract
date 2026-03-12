@@ -1,0 +1,14 @@
+pipeline:
+  ros__parameters:
+    policy_url: "http://127.0.0.1:8008/plan_grasp"
+    quality_threshold: 0.6
+    accept_pose.frame: "base_link"
+    accept_pose.xyz: [0.40, 0.25, 0.10]
+    accept_pose.quat: [0.0, 0.0, 0.0, 1.0]
+    reject_pose.frame: "base_link"
+    reject_pose.xyz: [0.40, -0.25, 0.10]
+    reject_pose.quat: [0.0, 0.0, 0.0, 1.0]
+    snapshot_topic: "/camera/color/image_raw"
+    snapshot_path: "/tmp/frame.jpg"
+    use_mock_primitives: false
+

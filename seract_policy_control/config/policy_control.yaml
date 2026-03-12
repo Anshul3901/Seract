@@ -1,0 +1,17 @@
+lerobot_policy_controller:
+  ros__parameters:
+    model_checkpoint: "/home/gixadmin/lerobot/outputs/so101_act_training/checkpoints/last/pretrained_model"
+    controller_topic: "/so_100_arm_controller/joint_trajectory"
+    rate_hz: 10.0
+    command_dt: 0.25
+    joint_names: ["Shoulder_Rotation", "Shoulder_Pitch", "Elbow", "Wrist_Pitch", "Wrist_Roll"]
+    joint_min:   [-3.14, -1.57, -2.50, -2.50, -2.80]
+    joint_max:   [ 3.14,  1.57,  2.50,  2.50,  2.80]
+    use_open_loop_test: false
+    test_delta:  [0.02, 0.0, 0.0, 0.0, 0.0]
+    use_remote_policy: true
+    policy_url: "http://127.0.0.1:8009/plan_joints"
+    arm_joint_prefix_whitelist: ["Shoulder_", "Elbow", "Wrist_"]
+    image_topic: "/camera/camera/color/image_raw"  # Scene camera (RealSense) - note double 'camera'
+    image_wrist_topic: "/camera2/color/image_raw"  # Wrist camera (USB Webcam)
+    image_encoding: "rgb8"

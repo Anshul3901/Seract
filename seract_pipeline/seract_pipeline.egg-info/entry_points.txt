@@ -1,0 +1,4 @@
+[console_scripts]
+calib_helper = seract_pipeline.calib_helper:main
+pipeline = seract_pipeline.pipeline:main
+usb_camera_node = seract_pipeline.usb_camera_node:main
