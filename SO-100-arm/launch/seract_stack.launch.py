@@ -1,5 +1,5 @@
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
+from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, ExecuteProcess
 from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
@@ -23,6 +23,11 @@ def generate_launch_description():
         'run_policy_bridge',
         default_value='false',
         description='Start seract_policy_control policy_bridge node'
+    )
+    run_web_ui_arg = DeclareLaunchArgument(
+        'run_web_ui',
+        default_value='true',
+        description='Start web UI (bridge node and Flask server)'
     )
 
     # --- so_100_arm hardware.launch.py ---
@@ -156,10 +161,27 @@ def generate_launch_description():
         output='screen',
     )
 
+    # Web UI Bridge Node (ROS2)
+    web_ui_bridge = Node(
+        condition=IfCondition(LaunchConfiguration('run_web_ui')),
+        package='web_ui',
+        executable='web_ui_bridge',
+        name='web_ui_bridge',
+        output='screen',
+    )
+
+    # Web UI Flask Server (separate process)
+    web_ui_server = ExecuteProcess(
+        condition=IfCondition(LaunchConfiguration('run_web_ui')),
+        cmd=['ros2', 'run', 'web_ui', 'web_ui_server'],
+        output='screen',
+    )
+
     return LaunchDescription([
         run_scanning_arg,
         run_vision_arg,
         run_policy_bridge_arg,
+        run_web_ui_arg,
         so100_hardware,
         usb_camera,
         obj_bbox,
@@ -167,4 +189,6 @@ def generate_launch_description():
         scan_motion,
         vision_inspection,
         policy_bridge,
+        web_ui_bridge,
+        web_ui_server,
     ])

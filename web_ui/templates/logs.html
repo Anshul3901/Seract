@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Logs - Seract Inspection UI{% endblock %}
+
+{% block content %}
+<div class="logs-container">
+    <h1 class="page-title">📋 Inspection History</h1>
+    
+    <div id="logs-loading" class="loading-message">
+        <div class="spinner"></div>
+        <p>Loading past items...</p>
+    </div>
+    
+    <div id="logs-content" class="logs-content" style="display: none;">
+        <div id="logs-grid" class="logs-grid">
+            <!-- Items will be populated here -->
+        </div>
+    </div>
+    
+    <!-- Item Detail Modal -->
+    <div id="item-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="modal-body">
+                <!-- Content loaded dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/logs.js') }}"></script>
+{% endblock %}
+

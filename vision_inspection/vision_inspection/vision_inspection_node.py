@@ -175,6 +175,7 @@ class VisionInspectionNode(Node):
         
         # Optional: Publisher for detection results
         self.result_publisher = self.create_publisher(String, '/vision_detection_results', 10)
+        self.decision_publisher = self.create_publisher(String, '/vision_decision', 10)
         
         # Batch processing: Group images by item and wait for all 5 views
         self.batch_process = self.get_parameter('batch_process').get_parameter_value().bool_value
@@ -577,6 +578,12 @@ class VisionInspectionNode(Node):
             result_msg = String()
             result_msg.data = json.dumps(result)
             self.result_publisher.publish(result_msg)
+            
+            # Publish decision to vision_decision topic
+            decision_msg = String()
+            decision_msg.data = overall_decision
+            self.decision_publisher.publish(decision_msg)
+            self.get_logger().info(f"📡 Published decision to /vision_decision: {overall_decision}")
 
             # Write decision.json for decision_movement node
             try:

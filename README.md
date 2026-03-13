@@ -24,7 +24,7 @@ Your workspace should look something like this:
 └── log/
 ```
 
-If you only copied the packages, make sure they are inside the `src/` folder.
+Make sure the repo is pulled inside the `src/` folder.
 
 ---
 

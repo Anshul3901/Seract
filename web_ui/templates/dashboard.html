@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Seract Inspection UI{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-item">
+            <span class="status-label">Status:</span>
+            <span id="processing-status" class="status-value">Idle</span>
+        </div>
+        <div class="status-item">
+            <span class="status-label">Current View:</span>
+            <span id="current-view" class="status-value">-</span>
+        </div>
+        <div class="status-item">
+            <span class="status-label">Decision:</span>
+            <span id="decision-text" class="status-value">-</span>
+        </div>
+    </div>
+    
+    <!-- Main Content Grid -->
+    <div class="dashboard-grid">
+        <!-- Camera and Status Row -->
+        <div class="camera-status-row">
+            <!-- Live Camera Feed -->
+            <div class="panel camera-panel">
+                <h2 class="panel-title">📹 Live Camera Feed</h2>
+                <div class="camera-container">
+                    <img id="camera-feed" src="" alt="Camera feed" class="camera-image">
+                    <div id="camera-placeholder" class="camera-placeholder">
+                        <p>Waiting for camera feed...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- System Stage Display -->
+            <div class="panel status-panel">
+                <h2 class="panel-title">🔄 System Status</h2>
+                <div id="system-stage" class="system-stage-container">
+                    <div id="stage-idle" class="stage-display">
+                        <div class="stage-icon">⏸️</div>
+                        <h3>Idle</h3>
+                        <p>Waiting for object detection...</p>
+                    </div>
+                    <div id="stage-scanning" class="stage-display" style="display: none;">
+                        <div class="stage-icon">📸</div>
+                        <h3>Scanning</h3>
+                        <p>Capturing images from different views...</p>
+                    </div>
+                    <div id="stage-analyzing" class="stage-display" style="display: none;">
+                        <div class="stage-icon">⚙️</div>
+                        <h3>Analyzing</h3>
+                        <p>Processing images with AI model...</p>
+                        <div class="spinner"></div>
+                    </div>
+                    <div id="stage-accept" class="stage-display" style="display: none;">
+                        <div class="stage-icon">✅</div>
+                        <h3>Accept</h3>
+                        <p class="decision-message">Restock / Resell</p>
+                    </div>
+                    <div id="stage-reject" class="stage-display" style="display: none;">
+                        <div class="stage-icon">❌</div>
+                        <h3>Reject</h3>
+                        <p class="decision-message">Recycle / Review</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}
+
